@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <ListView x:Name="processesListView" Margin="8">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="{Binding ActualWidth, ElementName=helperRow0, Mode=OneWay}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
+        <Grid Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" x:Name="helperRow0" Margin="12"/>
+        </Grid>
     </Grid>
 </Window>
