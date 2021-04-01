@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 
 namespace ProcessGui {
@@ -8,6 +9,9 @@ namespace ProcessGui {
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();
+			var service = new ServiceManager();
+			service.Start();
+			service.UpdateProcesses += (procs) => processesListView.Dispatcher.Invoke(() => processesListView.Items.Add(procs.First()));
 		}
 	}
 }

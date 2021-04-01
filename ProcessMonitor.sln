@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessService", "ProcessService\ProcessService.csproj", "{8ECEC0EA-18F6-4474-8C4A-5230D4BF9499}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessGui", "ProcessGui\ProcessGui.csproj", "{8B8A7C29-957C-43DB-AEB9-C7E69C4D9691}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8ECEC0EA-18F6-4474-8C4A-5230D4BF9499} = {8ECEC0EA-18F6-4474-8C4A-5230D4BF9499}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
