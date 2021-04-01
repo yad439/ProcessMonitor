@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 
@@ -11,7 +12,17 @@ namespace ProcessGui {
 			InitializeComponent();
 			var service = new ServiceManager();
 			service.Start();
-			service.UpdateProcesses += (procs) => processesListView.Dispatcher.Invoke(() => processesListView.Items.Add(procs.First()));
+			service.UpdateProcesses += UpdateProcessList;
+		}
+
+		private void UpdateProcessList(IEnumerable<ProcessDto> processes) {
+			processesListView.Dispatcher.Invoke(() => {
+				var items = processesListView.Items;
+				items.Clear();
+				foreach(var process in processes){
+					items.Add(process);
+				}
+			});
 		}
 	}
 }
