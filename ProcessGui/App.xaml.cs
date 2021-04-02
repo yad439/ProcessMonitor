@@ -9,10 +9,11 @@ namespace ProcessGui {
 	public partial class App {
 		protected override void OnStartup(StartupEventArgs e) {
 			base.OnStartup(e);
-			var kernel = new KernelConfiguration(new DiModule()).BuildReadonlyKernel();
+			const string servicePath = "ProcessService.exe";
+			var kernel = new KernelConfiguration(new DiModule(servicePath)).BuildReadonlyKernel();
 			var window = kernel.Get<MainWindow>();
-			MainWindow = window;
 			window.Show();
+			MainWindow = window;
 		}
 	}
 }

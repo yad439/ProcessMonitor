@@ -8,8 +8,12 @@ using Ninject.Modules;
 
 namespace ProcessGui {
 	internal class DiModule :NinjectModule {
+		private readonly string _servicePath;
+
+		public DiModule(string servicePath) { _servicePath = servicePath; }
+
 		public override void Load() {
-			Bind<ServiceManager>().ToSelf();
+			Bind<ServiceManager>().ToSelf().WithConstructorArgument(_servicePath);
 			Bind<MainWindow>().ToSelf();
 		}
 	}

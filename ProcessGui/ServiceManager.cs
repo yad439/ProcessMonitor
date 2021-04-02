@@ -9,11 +9,14 @@ namespace ProcessGui {
 
 		public event UpdateProcessesHandler UpdateProcesses;
 
+		private readonly string _executablePath;
 		private Process _process;
+
+		public ServiceManager(string executablePath) { _executablePath = executablePath; }
 
 		public void Start() {
 			var startInfo = new ProcessStartInfo {
-													 FileName = "ProcessService.exe",
+													 FileName = _executablePath,
 													 RedirectStandardOutput = true,
 													 UseShellExecute = false,
 													 CreateNoWindow = true,
