@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-
 
 namespace ProcessGui {
 	/// <summary>
@@ -19,7 +17,7 @@ namespace ProcessGui {
 			processesListView.Dispatcher.Invoke(() => {
 				var items = processesListView.Items;
 				items.Clear();
-				foreach(var process in processes){
+				foreach (var process in processes) {
 					items.Add(process);
 				}
 			});

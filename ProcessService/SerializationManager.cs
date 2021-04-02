@@ -8,12 +8,10 @@ namespace ProcessService {
 	internal class SerializationManager {
 		private readonly TextWriter _writer;
 
-		public SerializationManager(TextWriter writer) {
-			_writer = writer;
-		}
+		public SerializationManager(TextWriter writer) { _writer = writer; }
 
 		public void SendProcesses(IEnumerable<Process> processes) {
-			var forSerialization = processes.Select(proc => new ProcessDto { Name = proc.ProcessName }).ToList();
+			var forSerialization = processes.Select(proc => new ProcessDto {Name = proc.ProcessName}).ToList();
 			var json = JsonSerializer.Serialize(forSerialization);
 			_writer.WriteLine(json);
 			_writer.Flush();
