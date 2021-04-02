@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace ProcessGui {
@@ -6,11 +7,13 @@ namespace ProcessGui {
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	internal sealed partial class MainWindow : Window {
+		private readonly ServiceManager _service;
+
 		public MainWindow() {
 			InitializeComponent();
-			var service = new ServiceManager();
-			service.Start();
-			service.UpdateProcesses += UpdateProcessList;
+			_service = new ServiceManager();
+			_service.Start();
+			_service.UpdateProcesses += UpdateProcessList;
 		}
 
 		private void UpdateProcessList(IEnumerable<ProcessDto> processes) {
@@ -21,6 +24,11 @@ namespace ProcessGui {
 					items.Add(process);
 				}
 			});
+		}
+
+		protected override void OnClosed(EventArgs e) {
+			base.OnClosed(e);
+			_service.Stop();
 		}
 	}
 }
