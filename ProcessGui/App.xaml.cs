@@ -9,7 +9,7 @@ namespace ProcessGui {
 	public partial class App {
 		protected override void OnStartup(StartupEventArgs e) {
 			base.OnStartup(e);
-			const string servicePath = "ProcessService.exe";
+			var servicePath = e.Args.Length > 0 ? e.Args[1] : "ProcessService";
 			var kernel = new KernelConfiguration(new DiModule(servicePath)).BuildReadonlyKernel();
 			var window = kernel.Get<MainWindow>();
 			window.Show();
