@@ -12,8 +12,8 @@ namespace ProcessGui {
 		public MainWindow() {
 			InitializeComponent();
 			_service = new ServiceManager();
-			_service.Start();
 			_service.UpdateProcesses += UpdateProcessList;
+			_service.Start();
 		}
 
 		private void UpdateProcessList(IEnumerable<ProcessDto> processes) {
