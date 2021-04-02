@@ -19,7 +19,7 @@ namespace ProcessGui {
 													 CreateNoWindow = true,
 												 };
 			_process = Process.Start(startInfo);
-			_process.OutputDataReceived += OnProcessDataRecieved;
+			_process.OutputDataReceived += OnProcessDataReceived;
 			_process.BeginOutputReadLine();
 		}
 
@@ -32,7 +32,7 @@ namespace ProcessGui {
 			_process = null;
 		}
 
-		private void OnProcessDataRecieved(object sender, DataReceivedEventArgs e) {
+		private void OnProcessDataReceived(object sender, DataReceivedEventArgs e) {
 			if (e.Data == null) return;
 
 			var processes = JsonSerializer.Deserialize<ProcessDto[]>(e.Data);

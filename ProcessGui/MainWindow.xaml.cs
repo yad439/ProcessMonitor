@@ -14,8 +14,8 @@ namespace ProcessGui {
 		}
 
 		private void UpdateProcessList(IEnumerable<ProcessDto> processes) {
-			processesListView.Dispatcher.Invoke(() => {
-				var items = processesListView.Items;
+			ProcessesListView.Dispatcher.Invoke(() => {
+				var items = ProcessesListView.Items;
 				items.Clear();
 				foreach (var process in processes) {
 					items.Add(process);

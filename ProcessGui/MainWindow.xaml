@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="400" x:ClassModifier="internal">
     <Grid>
-        <ListView x:Name="processesListView" Margin="8">
+        <ListView x:Name="ProcessesListView" Margin="8">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="400"/>
