@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.Json;
 
 namespace ProcessGui {
-	internal class ServiceManager {
+	internal class ServiceManager : IDisposable {
 		public delegate void UpdateProcessesHandler(IEnumerable<ProcessDto> processes);
 		public event UpdateProcessesHandler UpdateProcesses;
 
@@ -21,10 +22,21 @@ namespace ProcessGui {
 			_process.BeginOutputReadLine();
 		}
 
+		public void Stop() {
+			if (_process == null) return;
+
+			_process.Kill();
+			_process.WaitForExit();
+			_process.Dispose();
+			_process = null;
+		}
+
 		private void OnProcessDataRecieved(object sender, DataReceivedEventArgs e) {
 			if (e.Data == null) return;
 			var processes = JsonSerializer.Deserialize<ProcessDto[]>(e.Data);
 			UpdateProcesses(processes);
 		}
+
+		public void Dispose() => Stop();
 	}
 }
