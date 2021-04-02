@@ -9,9 +9,9 @@ namespace ProcessGui {
 	internal sealed partial class MainWindow : Window {
 		private readonly ServiceManager _service;
 
-		public MainWindow() {
+		public MainWindow(ServiceManager service) {
 			InitializeComponent();
-			_service = new ServiceManager();
+			_service = service;
 			_service.UpdateProcesses += UpdateProcessList;
 			_service.Start();
 		}
