@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Threading;
 
 namespace ProcessService {
-	internal class Program {
-		static void Main() {
+	internal static class Program {
+		private static void Main() {
 			var connection = new SerializationManager(Console.Out);
 			while (true) {
 				var processes = Process.GetProcesses();

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="400">
+        Title="MainWindow" Height="500" Width="400" x:ClassModifier="internal">
     <Grid>
         <ListView x:Name="processesListView" Margin="8">
             <ListView.View>

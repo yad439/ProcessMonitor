@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 
 namespace ProcessService {
-	internal class SerializationManager {
+	internal sealed class SerializationManager {
 		private readonly TextWriter _writer;
 
 		public SerializationManager(TextWriter writer) { _writer = writer; }

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text.Json;
 
 namespace ProcessGui {
-	internal class ServiceManager : IDisposable {
+	internal sealed class ServiceManager : IDisposable {
 		public delegate void UpdateProcessesHandler(IEnumerable<ProcessDto> processes);
 
 		public event UpdateProcessesHandler UpdateProcesses;
