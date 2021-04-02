@@ -10,7 +10,7 @@
         <ListView x:Name="ProcessesListView" Margin="8">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="400"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>
