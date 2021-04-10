@@ -7,28 +7,18 @@ namespace ProcessGui {
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	internal sealed partial class MainWindow : Window {
-		private readonly ServiceManager _service;
+		private readonly ProcessViewModel _viewModel;
 
-		public MainWindow(ServiceManager service) {
+		public MainWindow(ProcessViewModel viewModel) {
 			InitializeComponent();
-			_service = service;
-			_service.UpdateProcesses += UpdateProcessList;
-			_service.Start();
-		}
-
-		private void UpdateProcessList(IEnumerable<ProcessDto> processes) {
-			ProcessesListView.Dispatcher.Invoke(() => {
-				var items = ProcessesListView.Items;
-				items.Clear();
-				foreach (var process in processes) {
-					items.Add(process);
-				}
-			});
+			_viewModel = viewModel;
+			DataContext = _viewModel;
+			_viewModel.StartUpdate();
 		}
 
 		protected override void OnClosed(EventArgs e) {
 			base.OnClosed(e);
-			_service.Stop();
+			_viewModel.StopUpdate();
 		}
 	}
 }

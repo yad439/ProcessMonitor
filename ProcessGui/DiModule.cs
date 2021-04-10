@@ -14,6 +14,7 @@ namespace ProcessGui {
 
 		public override void Load() {
 			Bind<ServiceManager>().ToSelf().WithConstructorArgument(_servicePath);
+			Bind<ProcessViewModel>().ToSelf();
 			Bind<MainWindow>().ToSelf();
 		}
 	}
