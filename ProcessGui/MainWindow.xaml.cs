@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ProcessGui {
 	/// <summary>
@@ -11,8 +13,14 @@ namespace ProcessGui {
 
 		public MainWindow(ProcessViewModel viewModel) {
 			InitializeComponent();
+
 			_viewModel = viewModel;
 			DataContext = _viewModel;
+
+			var view = CollectionViewSource.GetDefaultView(_viewModel.Processes);
+			view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+			view.Refresh();
+
 			_viewModel.StartUpdate();
 		}
 
