@@ -19,6 +19,7 @@ namespace ProcessGui {
 			var startInfo = new ProcessStartInfo {
 													 FileName = _executablePath,
 													 RedirectStandardOutput = true,
+													 RedirectStandardInput = true,
 													 UseShellExecute = false,
 													 CreateNoWindow = true,
 												 };
@@ -32,6 +33,12 @@ namespace ProcessGui {
 
 			_process.OutputDataReceived += OnProcessDataReceived;
 			_process.BeginOutputReadLine();
+		}
+
+		public void SetUpdateInterval(int milliseconds) {
+			var stream = _process.StandardInput;
+			stream.WriteLine(milliseconds);
+			stream.Flush();
 		}
 
 		public void Stop() {

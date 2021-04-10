@@ -17,6 +17,8 @@ namespace ProcessGui {
 
 		public void StopUpdate() => _serviceManager.Stop();
 
+		public void SetUpdateInterval(int milliseconds) => _serviceManager.SetUpdateInterval(milliseconds);
+
 		private void UpdateProcesses(IEnumerable<ProcessDto> processes) {
 			Application.Current.Dispatcher.Invoke(() => {
 				Processes.Clear();

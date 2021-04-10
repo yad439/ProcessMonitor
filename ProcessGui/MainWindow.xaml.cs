@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ProcessGui {
 	/// <summary>
@@ -18,6 +19,12 @@ namespace ProcessGui {
 		protected override void OnClosed(EventArgs e) {
 			base.OnClosed(e);
 			_viewModel.StopUpdate();
+		}
+
+		private void ChangeUpdateInterval(object sender, SelectionChangedEventArgs e) {
+			var box = (ComboBox)sender;
+			var selection = (TimeoutItem) box.SelectedItem;
+			_viewModel?.SetUpdateInterval(selection.Value);
 		}
 	}
 }

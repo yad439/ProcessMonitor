@@ -5,12 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="400" x:ClassModifier="internal" d:DataContext="{d:DesignInstance local:ProcessViewModel}">
+        Title="MainWindow" Height="500" Width="400" x:ClassModifier="internal"
+        d:DataContext="{d:DesignInstance local:ProcessViewModel}">
     <Grid>
-        <ListView x:Name="ProcessesListView" Margin="8" ItemsSource="{Binding Path=Processes}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="Update interval" HorizontalAlignment="Left" Margin="8,8,8,8" VerticalAlignment="Top" />
+            <ComboBox HorizontalAlignment="Left" Margin="8,8,8,8" VerticalAlignment="Top" Width="120" SelectedIndex="2"
+                      SelectionChanged="ChangeUpdateInterval">
+                <local:TimeoutItem Value="100" />
+                <local:TimeoutItem Value="500" />
+                <local:TimeoutItem Value="1000" />
+                <local:TimeoutItem Value="5000" />
+                <local:TimeoutItem Value="10000" />
+            </ComboBox>
+        </StackPanel>
+        <ListView Grid.Row="1" Margin="8,8,8,8" ItemsSource="{Binding Path=Processes}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300" />
                 </GridView>
             </ListView.View>
         </ListView>
