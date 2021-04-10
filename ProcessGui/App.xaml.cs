@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-
 using Ninject;
 
 namespace ProcessGui {
@@ -13,7 +12,7 @@ namespace ProcessGui {
 			var kernel = new KernelConfiguration(new DiModule(servicePath)).BuildReadonlyKernel();
 			var window = kernel.Get<MainWindow>();
 			window.Show();
-			MainWindow = window;
+			window.Loaded += (_, _) => MainWindow = window;
 		}
 	}
 }
