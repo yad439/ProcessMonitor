@@ -1,5 +1,5 @@
 ﻿namespace ProcessGui {
-	internal class ProcessDto {
+	internal sealed class ProcessDto {
 		public string Name { get; set; }
 	}
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Ninject.Modules;
 
 namespace ProcessGui {
-	internal class DiModule :NinjectModule {
+	internal sealed class DiModule : NinjectModule {
 		private readonly string _servicePath;
 
 		public DiModule(string servicePath) { _servicePath = servicePath; }
