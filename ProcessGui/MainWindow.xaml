@@ -23,7 +23,8 @@
                 <local:TimeoutItem Value="10000" />
             </ComboBox>
         </StackPanel>
-        <ListView Grid.Row="1" Margin="8,8,8,8" ItemsSource="{Binding Path=Processes}">
+        <ListView Grid.Row="1" Margin="8,8,8,8" ItemsSource="{Binding Path=Processes}"
+                  GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300" />

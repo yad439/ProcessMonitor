@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,7 +8,7 @@ namespace ProcessGui {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	internal sealed partial class MainWindow : Window {
+	internal sealed partial class MainWindow {
 		private readonly ProcessViewModel _viewModel;
 
 		public MainWindow(ProcessViewModel viewModel) {
@@ -16,10 +16,6 @@ namespace ProcessGui {
 
 			_viewModel = viewModel;
 			DataContext = _viewModel;
-
-			var view = CollectionViewSource.GetDefaultView(_viewModel.Processes);
-			view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
-			view.Refresh();
 
 			_viewModel.StartUpdate();
 		}
@@ -30,9 +26,16 @@ namespace ProcessGui {
 		}
 
 		private void ChangeUpdateInterval(object sender, SelectionChangedEventArgs e) {
-			var box = (ComboBox)sender;
+			var box = (ComboBox) sender;
 			var selection = (TimeoutItem) box.SelectedItem;
 			_viewModel?.SetUpdateInterval(selection.Value);
+		}
+
+		private void GridViewColumnHeaderClickedHandler(object sender, RoutedEventArgs e) {
+			var header = (GridViewColumnHeader) e.OriginalSource;
+			Debug.Assert(header.Column.DisplayMemberBinding != null);
+			var column = ((Binding) header.Column.DisplayMemberBinding).Path.Path;
+			_viewModel.UpdateSorting(column);
 		}
 	}
 }
