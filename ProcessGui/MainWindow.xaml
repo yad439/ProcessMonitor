@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="400" x:ClassModifier="internal"
         d:DataContext="{d:DesignInstance local:ProcessViewModel}">
+    <Window.Resources>
+        <local:MemoryUsageConverter x:Key="MemoryConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,7 +30,10 @@
                   GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="300" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="160" />
+                    <GridViewColumn Header="Memory"
+                                    DisplayMemberBinding="{Binding MemoryUsage,Converter={StaticResource MemoryConverter}}"
+                                    Width="160" />
                 </GridView>
             </ListView.View>
         </ListView>

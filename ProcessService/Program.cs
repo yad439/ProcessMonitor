@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 
 namespace ProcessService {
@@ -10,7 +11,15 @@ namespace ProcessService {
 			settings.Timeout = 1000;
 			while (true) {
 				var processes = Process.GetProcesses();
-				connection.SendProcesses(processes);
+				var dtos = processes.Select(process => {
+					var dto = new ProcessDto {Name = process.ProcessName, MemoryUsage = process.PrivateMemorySize64};
+					return dto;
+				});
+				connection.SendProcesses(dtos);
+				foreach (var process in processes) {
+					process.Dispose();
+				}
+
 				Thread.Sleep(settings.Timeout);
 			}
 		}

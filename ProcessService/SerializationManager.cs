@@ -6,15 +6,10 @@ using System.Text.Json;
 
 namespace ProcessService {
 	internal sealed class SerializationManager {
-		public void SendProcesses(TextWriter writer, IEnumerable<Process> processes) {
-			var forSerialization = processes.Select(proc => new ProcessDto {Name = proc.ProcessName}).ToArray();
-			var json = JsonSerializer.Serialize(forSerialization);
+		public void SendProcesses(TextWriter writer, IEnumerable<ProcessDto> processes) {
+			var json = JsonSerializer.Serialize(processes);
 			writer.WriteLine(json);
 			writer.Flush();
-		}
-
-		private struct ProcessDto {
-			public string Name { get; set; }
 		}
 	}
 }

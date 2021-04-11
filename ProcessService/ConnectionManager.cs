@@ -16,7 +16,8 @@ namespace ProcessService {
 			new Thread(ReadSettings).Start();
 		}
 
-		public void SendProcesses(IEnumerable<Process> processes) => _serializationManager.SendProcesses(Console.Out, processes);
+		public void SendProcesses(IEnumerable<ProcessDto> processes) =>
+			_serializationManager.SendProcesses(Console.Out, processes);
 
 		private void ReadSettings() {
 			while (true) {
